@@ -1,0 +1,7 @@
+openai
+pyttsx3
+SpeechRecognition
+whisper
+google-cloud-texttospeech
+google-api-python-client
+pygame
