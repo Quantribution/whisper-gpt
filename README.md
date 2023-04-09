@@ -1,6 +1,6 @@
 # whisper-gpt
 
-whisper-gpt is a Python script that utilizes OpenAI's GPT-3 language model, Whisper speech-to-text engine, and Google Cloud's Text-to-Speech API, and to create a basic voice assistant that can transcribe speech, generate responses using GPT-3, and synthesize speech from the generated responses. 
+whisper-gpt is a Python script that utilizes OpenAI's GPT-3.5 language model, Whisper speech-to-text engine, and Google Cloud's Text-to-Speech API, and to create a basic voice assistant that can transcribe speech, generate responses using GPT-3.5, and synthesize speech from the generated responses. 
 
 ## Installation
 1. Clone this repository using `git clone https://github.com/quantribution/whisper-gpt.git`

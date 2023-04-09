@@ -35,18 +35,23 @@ def transcribe_audio_to_text():
 
 def generate_response(prompt):
     response = openai.Completion.create(
-        engine="text-davinci-003",
+        model="gpt-3.5-turbo",
         prompt=f"{prompt}",
         max_tokens=4000,
         n=1,
         stop=None,
         temperature=0.5,
     )
-    return response["choices"][0]["text"]
+
+    # Extract the generated text from the API response
+    generated_text = response["choices"][0]["text"]
+    
+    return generated_text
 
 def speak_text(text):
     # Set the text input to be synthesized
     synthesis_input = texttospeech.SynthesisInput(text=text)
+
     # Select the type of audio file returned
     audio_config = texttospeech.AudioConfig(
         audio_encoding=texttospeech.AudioEncoding.LINEAR16
@@ -55,7 +60,9 @@ def speak_text(text):
     # Perform the text-to-speech request on the text input with the selected
     # voice parameters and audio file type
     response = client.synthesize_speech(
-        input=synthesis_input, voice=voice, audio_config=audio_config
+        input=synthesis_input,
+        voice=voice,
+        audio_config=audio_config
     )
 
     # The response's audio_content is binary.
@@ -64,6 +71,7 @@ def speak_text(text):
         out.write(response.audio_content)
         print('Audio content written to file "output.wav"')
 
+    # Load the audio file and play it using Pygame
     pygame.mixer.init()
     pygame.mixer.music.load("output.wav")
     pygame.mixer.music.play()
@@ -103,6 +111,7 @@ def main():
                             
                         # Read the response using GPT3
                         speak_text(response)
+                        
             except Exception as e:          
                 print("An error ocurred: {}".format(e))
                 
